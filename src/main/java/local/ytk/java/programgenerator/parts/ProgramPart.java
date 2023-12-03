@@ -4,6 +4,6 @@ import local.ytk.java.programgenerator.lang.Language;
 
 public class ProgramPart {
     ProgramString convertTo(Language lang) {
-        return null;
+        return new ProgramString(lang.generate(null));
     }
 }

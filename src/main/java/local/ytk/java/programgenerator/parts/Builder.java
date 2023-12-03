@@ -6,14 +6,9 @@ import local.ytk.java.programgenerator.parts.ProgramPartType.B;
 import local.ytk.java.programgenerator.parts.ProgramPartType.C;
 import local.ytk.java.programgenerator.parts.ProgramPartType.E;
 import local.ytk.java.programgenerator.parts.ProgramPartType.O;
+import local.ytk.java.programgenerator.parts.Statement.SRef;
 
 public class Builder {
-    public static class Ref<T extends ProgramPartType<?>> {
-
-        public Ref(T t) {
-        }
-    }
-    
     public static <T extends ProgramPartType<?>> Action.ARef make(Action t, String v) {
         return new Action.ARef(t, v);
     }
@@ -35,6 +30,15 @@ public class Builder {
     public static <T extends ProgramPartType<?>> Name.NRef make(Name t, String v) {
         return new Name.NRef(t, v);
     }
+    public static <T extends ProgramPartType<?>> Operation.SingleOp.O1Ref make(Operation.SingleOp t, SRef v) {
+        return new Operation.SingleOp.O1Ref(t, v);
+    }
+    public static <T extends ProgramPartType<?>> Operation.DoubleOp.O2Ref make(Operation.DoubleOp t, SRef v1, SRef v2) {
+        return new Operation.DoubleOp.O2Ref(t, v1, v2);
+    }
+    public static <T extends ProgramPartType<?>> Operation.TripleOp.O3Ref make(Operation.TripleOp t, SRef v1, SRef v2, SRef v3) {
+        return new Operation.TripleOp.O3Ref(t, v1, v2, v3);
+    }
     public static <T extends ProgramPartType<?>> Statement.SRef make(Statement t, String v) {
         return new Statement.SRef(t, v);
     }
@@ -45,50 +49,74 @@ public class Builder {
         return new Value.VRef(t, v);
     }
 
-    public static <T extends ProgramPartType<?>> CpRef<T> makeCp(C<T> t, Ref<T> a) {
+    public static <T extends ProgramPartType<?>> CpRef<T> make(C<T> t, Ref<T> a) {
         return new CpRef<>(t, a);
     }
-    public static <T extends ProgramPartType<?>> OpRef<T> makeOp(O<T> t, Ref<T> a) {
+    public static <T extends ProgramPartType<?>> OpRef<T> make(O<T> t, Ref<T> a) {
         return new OpRef<>(t, a);
     }
 
-    public static <T extends ProgramPartType<?>, U extends ProgramPartType<?>> BRef<T, U> makeB(B<T, U> t, Ref<T> a, Ref<U> b) {
+    public static <T extends ProgramPartType<?>, U extends ProgramPartType<?>> BRef<T, U> make(B<T, U> t, Ref<T> a, Ref<U> b) {
         return new BRef<>(t, a, b);
     }
-    public static <T extends ProgramPartType<?>, U extends ProgramPartType<?>> ERef<T, U> makeE(E<T, U> t, Ref<T> a, Ref<U> b) {
+    public static <T extends ProgramPartType<?>, U extends ProgramPartType<?>> ERef<T, U> make(E<T, U> t, Ref<T> a, Ref<U> b) {
         return new ERef<>(t, a, b);
     }
 
+    public static abstract class Ref<T extends ProgramPartType<?>> {
+        public final T type;
+        public Ref(T t) {
+            this.type = t;
+        }
+    }
+
     public static class CpRef<T extends ProgramPartType<?>> extends Ref<C<T>> {
-        public final Ref<T> a;
+        public final Ref<T> value;
         public CpRef(C<T> t, Ref<T> a) {
             super(t);
-            this.a = a;
+            this.value = a;
         }
     }
     public static class OpRef<T extends ProgramPartType<?>> extends Ref<O<T>> {
-        public final Ref<T> a;
+        public final Ref<T> value;
+        public final boolean exists;
         public OpRef(O<T> t, Ref<T> a) {
             super(t);
-            this.a = a;
+            value = a;
+            exists = true;
+        }
+        public OpRef(O<T> t) {
+            super(t);
+            value = null;
+            exists = false;
         }
     }
     public static class BRef<T extends ProgramPartType<?>, U extends ProgramPartType<?>> extends Ref<B<T, U>> {
-        public final Ref<T> a;
-        public final Ref<U> b;
+        public final Ref<T> first;
+        public final Ref<U> second;
         public BRef(B<T, U> t, Ref<T> a, Ref<U> b) {
             super(t);
-            this.a = a;
-            this.b = b;
+            this.first = a;
+            this.second = b;
         }
     }
     public static class ERef<T extends ProgramPartType<?>, U extends ProgramPartType<?>> extends Ref<E<T, U>> {
-        public final Ref<T> a;
-        public final Ref<U> b;
-        public ERef(E<T, U> t, Ref<T> a, Ref<U> b) {
+        public final Ref<T> first;
+        public final Ref<U> second;
+        public final boolean isFirst;
+        public final boolean isSecond;
+        protected ERef(E<T, U> t, Ref<T> a, Ref<U> b) {
             super(t);
-            this.a = a;
-            this.b = b;
+            this.first = a;
+            this.second = b;
+            this.isFirst = a != null;
+            this.isSecond = b != null;
+        }
+        public static <T extends ProgramPartType<?>, U extends ProgramPartType<?>> ERef<T, U> first(E<T, U> t, Ref<T> a) {
+            return new ERef<>(t, a, null);
+        }
+        public static <T extends ProgramPartType<?>, U extends ProgramPartType<?>> ERef<T, U> second(E<T, U> t, Ref<U> b) {
+            return new ERef<>(t, null, b);
         }
     }
 }
