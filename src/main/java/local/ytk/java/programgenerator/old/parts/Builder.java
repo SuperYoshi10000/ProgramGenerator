@@ -1,12 +1,12 @@
-package local.ytk.java.programgenerator.parts;
+package local.ytk.java.programgenerator.old.parts;
 
-import local.ytk.java.programgenerator.parts.Action.ARef;
-import local.ytk.java.programgenerator.parts.Name.NRef;
-import local.ytk.java.programgenerator.parts.ProgramPartType.B;
-import local.ytk.java.programgenerator.parts.ProgramPartType.C;
-import local.ytk.java.programgenerator.parts.ProgramPartType.E;
-import local.ytk.java.programgenerator.parts.ProgramPartType.O;
-import local.ytk.java.programgenerator.parts.Statement.SRef;
+import local.ytk.java.programgenerator.old.parts.Action.ARef;
+import local.ytk.java.programgenerator.old.parts.Name.NRef;
+import local.ytk.java.programgenerator.old.parts.ProgramPartType.B;
+import local.ytk.java.programgenerator.old.parts.ProgramPartType.C;
+import local.ytk.java.programgenerator.old.parts.ProgramPartType.E;
+import local.ytk.java.programgenerator.old.parts.ProgramPartType.O;
+import local.ytk.java.programgenerator.old.parts.Statement.SRef;
 
 public class Builder {
     public static <T extends ProgramPartType<?>> Action.ARef make(Action t, String v) {

@@ -1,11 +1,11 @@
-package local.ytk.java.programgenerator.parts;
+package local.ytk.java.programgenerator.old.parts;
 
-import local.ytk.java.programgenerator.parts.ProgramPartType.B;
-import local.ytk.java.programgenerator.parts.ProgramPartType.E;
-import local.ytk.java.programgenerator.parts.ProgramPartType.M;
-import local.ytk.java.programgenerator.parts.ProgramPartType.None;
-import local.ytk.java.programgenerator.parts.ProgramPartType.O;
-import local.ytk.java.programgenerator.parts.ProgramPartType.x2;
+import local.ytk.java.programgenerator.old.parts.ProgramPartType.B;
+import local.ytk.java.programgenerator.old.parts.ProgramPartType.E;
+import local.ytk.java.programgenerator.old.parts.ProgramPartType.M;
+import local.ytk.java.programgenerator.old.parts.ProgramPartType.None;
+import local.ytk.java.programgenerator.old.parts.ProgramPartType.O;
+import local.ytk.java.programgenerator.old.parts.ProgramPartType.x2;
 
 @SuppressWarnings("unused")
 public class Common {

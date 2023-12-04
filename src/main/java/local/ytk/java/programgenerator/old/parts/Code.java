@@ -1,7 +1,7 @@
-package local.ytk.java.programgenerator.parts;
+package local.ytk.java.programgenerator.old.parts;
 
-import local.ytk.java.programgenerator.parts.Action.ARef;
-import local.ytk.java.programgenerator.parts.Builder.Ref;
+import local.ytk.java.programgenerator.old.parts.Action.ARef;
+import local.ytk.java.programgenerator.old.parts.Builder.Ref;
 
 public class Code extends ProgramPartType<Code> {
     public Code(String name) {

@@ -1,4 +1,4 @@
-package local.ytk.java.programgenerator.parts;
+package local.ytk.java.programgenerator.old.parts;
 
 import java.util.function.BiFunction;
 import java.util.function.BinaryOperator;
@@ -7,14 +7,14 @@ import java.util.function.UnaryOperator;
 
 import com.google.common.collect.ImmutableMap;
 
-import local.ytk.java.programgenerator.parts.Builder.BRef;
-import local.ytk.java.programgenerator.parts.Builder.ERef;
-import local.ytk.java.programgenerator.parts.Builder.OpRef;
-import local.ytk.java.programgenerator.parts.Builder.Ref;
-import local.ytk.java.programgenerator.parts.Name.NRef;
-import local.ytk.java.programgenerator.parts.Operation.*;
-import local.ytk.java.programgenerator.parts.ProgramPartType.*;
-import local.ytk.java.programgenerator.parts.Type.TRef;
+import local.ytk.java.programgenerator.old.parts.Builder.BRef;
+import local.ytk.java.programgenerator.old.parts.Builder.ERef;
+import local.ytk.java.programgenerator.old.parts.Builder.OpRef;
+import local.ytk.java.programgenerator.old.parts.Builder.Ref;
+import local.ytk.java.programgenerator.old.parts.Name.NRef;
+import local.ytk.java.programgenerator.old.parts.Operation.*;
+import local.ytk.java.programgenerator.old.parts.ProgramPartType.*;
+import local.ytk.java.programgenerator.old.parts.Type.TRef;
 
 public abstract class ProgramGeneratorFunction<T extends ProgramPartType<?>>
 implements BiFunction<Ref<T>, ImmutableMap<String, ProgramGeneratorFunction<T>.ProgramGeneratorArgument>, String> {

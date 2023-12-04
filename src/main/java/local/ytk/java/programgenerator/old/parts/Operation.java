@@ -1,6 +1,6 @@
-package local.ytk.java.programgenerator.parts;
+package local.ytk.java.programgenerator.old.parts;
 
-import local.ytk.java.programgenerator.parts.Builder.Ref;
+import local.ytk.java.programgenerator.old.parts.Builder.Ref;
 
 public abstract class Operation extends ProgramPartType<Operation> {
     public Operation(String name) {

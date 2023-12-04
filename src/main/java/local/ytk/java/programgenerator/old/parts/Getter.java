@@ -1,7 +1,7 @@
-package local.ytk.java.programgenerator.parts;
+package local.ytk.java.programgenerator.old.parts;
 
-import local.ytk.java.programgenerator.parts.Builder.Ref;
-import local.ytk.java.programgenerator.parts.Name.NRef;
+import local.ytk.java.programgenerator.old.parts.Builder.Ref;
+import local.ytk.java.programgenerator.old.parts.Name.NRef;
 
 public class Getter extends Statement {
     public Getter(String name) {

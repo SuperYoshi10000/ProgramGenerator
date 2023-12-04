@@ -1,27 +1,27 @@
-package local.ytk.java.programgenerator.lang;
+package local.ytk.java.programgenerator.old.lang;
 
 import java.util.HashMap;
 import java.util.function.BiFunction;
 
 import com.google.common.collect.ImmutableMap;
 
-import local.ytk.java.programgenerator.parts.*;
-import local.ytk.java.programgenerator.parts.Action.ARef;
-import local.ytk.java.programgenerator.parts.Annotation.AnRef;
-import local.ytk.java.programgenerator.parts.Builder.Ref;
-import local.ytk.java.programgenerator.parts.Code.CRef;
-import local.ytk.java.programgenerator.parts.Comment.CmRef;
-import local.ytk.java.programgenerator.parts.Getter.GRef;
-import local.ytk.java.programgenerator.parts.Keyword.KRef;
-import local.ytk.java.programgenerator.parts.Name.NRef;
-import local.ytk.java.programgenerator.parts.Operation.*;
-import local.ytk.java.programgenerator.parts.Operation.DoubleOp.O2Ref;
-import local.ytk.java.programgenerator.parts.Operation.SingleOp.O1Ref;
-import local.ytk.java.programgenerator.parts.Operation.TripleOp.O3Ref;
-import local.ytk.java.programgenerator.parts.ProgramGeneratorFunction.*;
-import local.ytk.java.programgenerator.parts.Statement.SRef;
-import local.ytk.java.programgenerator.parts.Type.TRef;
-import local.ytk.java.programgenerator.parts.Value.VRef;
+import local.ytk.java.programgenerator.old.parts.*;
+import local.ytk.java.programgenerator.old.parts.Action.ARef;
+import local.ytk.java.programgenerator.old.parts.Annotation.AnRef;
+import local.ytk.java.programgenerator.old.parts.Builder.Ref;
+import local.ytk.java.programgenerator.old.parts.Code.CRef;
+import local.ytk.java.programgenerator.old.parts.Comment.CmRef;
+import local.ytk.java.programgenerator.old.parts.Getter.GRef;
+import local.ytk.java.programgenerator.old.parts.Keyword.KRef;
+import local.ytk.java.programgenerator.old.parts.Name.NRef;
+import local.ytk.java.programgenerator.old.parts.Operation.*;
+import local.ytk.java.programgenerator.old.parts.Operation.DoubleOp.O2Ref;
+import local.ytk.java.programgenerator.old.parts.Operation.SingleOp.O1Ref;
+import local.ytk.java.programgenerator.old.parts.Operation.TripleOp.O3Ref;
+import local.ytk.java.programgenerator.old.parts.ProgramGeneratorFunction.*;
+import local.ytk.java.programgenerator.old.parts.Statement.SRef;
+import local.ytk.java.programgenerator.old.parts.Type.TRef;
+import local.ytk.java.programgenerator.old.parts.Value.VRef;
 
 public abstract class Language {
     public Language() {
