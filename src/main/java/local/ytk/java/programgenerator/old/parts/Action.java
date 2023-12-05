@@ -2,11 +2,11 @@ package local.ytk.java.programgenerator.old.parts;
 
 import local.ytk.java.programgenerator.old.parts.Builder.Ref;
 
+
 public class Action extends ProgramPartType<Code> {
     public Action(String name) {
         super(name);
     }
-
     public Action(String name, ProgramPartType<?> function) {
         super(name, function);
     }
