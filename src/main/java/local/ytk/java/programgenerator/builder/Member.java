@@ -2,7 +2,7 @@ package local.ytk.java.programgenerator.builder;
 
 public abstract class Member<T extends Type<T>> {
     protected final Identifier name;
-    protected final Type<T> type;
+    protected T type;
     protected boolean isFinal = false;
     protected boolean isConstant = false;
     protected boolean isStatic = false;
@@ -12,6 +12,14 @@ public abstract class Member<T extends Type<T>> {
         super();
         this.name = name;
         this.type = type;
+    }
+
+    public Member(Identifier name) {
+        this.name = name;
+    }
+
+    public T type() {
+        return type;
     }
 
     public static class Field<T extends Type<T>> extends Member<T> {
@@ -43,6 +51,7 @@ public abstract class Member<T extends Type<T>> {
         PROTECTED,
         PACKAGE_PRIVATE,
         PRIVATE,
+        IGNORE,
         ;
     }
 }
