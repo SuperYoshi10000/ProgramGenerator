@@ -5,6 +5,9 @@ public interface Identifier {
     public static Identifier create(String name) {
         return new NamedIdentifier(name);
     }
+    public default Identifier id() {
+        return this;
+    }
     
     public static class NamedIdentifier implements Identifier {
         protected final String name;
@@ -14,6 +17,10 @@ public interface Identifier {
         @Override
         public String name() {
             return name;
+        }
+        @Override
+        public NamedIdentifier id() {
+            return this;
         }
     }
 }

@@ -1,32 +1,29 @@
 package local.ytk.java.programgenerator.builder;
 
-import javax.annotation.Nullable;
-
 import com.google.common.collect.ArrayListMultimap;
 
-public class PClass implements Type<PClass> {
-    @Nullable
-    public final Identifier className;
+public class PClass extends Member<PClass> implements Type<PClass> {
     public final ArrayListMultimap<Identifier, Member.Field<?>> fields = ArrayListMultimap.create();
 
     public PClass() {
-        this.className = null;
+        super(null, null);
+        type = this;
     }
     public PClass(Identifier className) {
-        this.className = className;
+        super(className, null);
+        type = this;
+    }
+    public PClass create(Identifier className) {
+        return new PClass(className);
+    }
+
+    public static PClass create() {
+        return new PClass();
     }
 
     @Override
     public String name() {
-        return className != null ? className.name() : null;
-    }
-
-    public static PClass pclass(Identifier className) {
-        return new PClass();
-    }
-
-    public static PClass pclass() {
-        return new PClass();
+        return name != null ? name.name() : null;
     }
 
     public <T extends Type<T>> Member.Field<T> field(Identifier name, T type, Value<T> value) {
