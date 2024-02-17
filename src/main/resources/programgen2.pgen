@@ -1,0 +1,189 @@
+@file mode = "lib"
+@requirenative "ProgramGenerator" -> *
+
+# Usage:
+# @import "programgen2" -> *
+# @makeglobal pgen
+
+@class pgen {
+    @M builder(): Builder {
+        @ret build().builder()
+    }
+    @M generate(program: Program): GeneratedProgram -> pg("generate" program) {
+        @ret build().builder().build(program)
+    }
+
+    @M build(): Build -> pg("build")
+    @M expressions(): Expressions -> pg("expressions")
+    @M statements(): Statements -> pg("statements")
+    @M types(): Types -> pg("types")
+    @M values(): Values -> pg("values")
+    @M accessors(): Accessors -> pg("accessors")
+    @M declarations(): Declarations -> pg("declarations")
+    @M definitions(): Definitions -> pg("definitions")
+    @M literals(): Literals -> pg("literals")
+    @M parts(): Parts -> pg("parts")
+    @M groups(): Groups -> pg("groups")
+
+    // BUILD
+    @M classFile(classes: Class[]): ClassFile -> pg("classFile" classes)
+    @M declarationFile(declarations: Declaration[]): DeclarationFile -> pg("declarationFile" declarations)
+    @M fileContainer(files: ProgramFile[]): FileContainer -> pg("fileContainer" files)
+    @M package(contents: (ProgramFile | Package)[]): Package -> pg("package" contents)
+    @M programFile(): ProgramFile -> pg("programFile")
+    @M script(components: Either<Statement,Declaration>[]): Script -> pg("script" components)
+    @M scriptFile(script: Script): ScriptFile -> pg("scriptFile" script)
+    @M builder(): Builder -> pg("builder")
+
+    // EXPRESSIONS
+    @M argumentList(expressions: Expression[]): ArgumentList -> pg("argumentList" expressions)
+    @M expression(): Expression -> pg("expression")
+    @M expressionList(expressions: Expression[]): ExpressionList -> pg("expressionList" expressions)
+    @M function(function: FunctionCall): FunctionExpression -> pg("functionExpr" function)
+    @M literal(literal: Literal): LiteralExpression -> pg("literalExpr" literal)
+    @M operatorExpr(op: Operator): OperatorExpression -> pg("operatorExpr" op)
+    @M unaryOpExpr(op: UnaryOperator): UnaryOperatorExpression -> pg("unaryOpExpr" op)
+    @M binaryOpExpr(op: BinaryOperator): BinaryOperatorExpression -> pg("binaryOpExpr" op)
+    @M ternaryOpExpr(op: TernaryOperator): TernaryOperatorExpression -> pg("ternaryOpExpr" op)
+
+    @M operator(): Operator -> pg("operator")
+    @M unaryOperator(a: Expression): UnaryOperator -> pg("unaryOperator" a)
+    @M binaryOperator(a: Expression, b: Expression): BinaryOperator -> pg("binaryOperator" a b)
+    @M ternaryOperator(a: Expression, b: Expression, c: Expression): TernaryOperator -> pg("ternaryOperator" a b c)
+
+    // STATEMENTS
+    @M statement(): Statement -> pg("statement")
+    @M expression(expr: Expression): ExpressionStatement -> pg("expressionSt" expr)
+    @M function(function: Function, args: ArgumentList): FunctionCall -> pg("functionSt" function args)
+    @M variableDecl(var: LocalVariable, type: Type, mods: ModifierList): LocalVariableDeclaration -> pg("variableDeclSt" var type mods)
+    @M variableDef(var: LocalVariable, type: Type, mods: ModifierList, expr: Expression): LocalVariableDefinition -> pg("variableDefSt" var type mods expr)
+    @M returns(expr: Expression): ReturnStatement -> pg("returns" expr)
+    @M statementList(statements: Statement[]): StatementList -> pg("statementList" statements)
+    
+    @M block(): Block -> pg("block")
+
+    @M value(): HasValueStatement -> pg("valueSt")
+    @M io(): IOStatement -> pg("ioSt")
+    @M in(): InputStatement -> pg("inSt")
+    @M out(expr: Expression): OutputStatement -> pg("outSt" expr)
+
+
+    @M type(key: String): Type -> pg("type" key)
+    @M any(key: String): AnyType -> pg("anyType" key)
+    <T extends Type> array(T type): ArrayType<T>
+    @M bool(key: String): BooleanType -> pg("boolType" key)
+    @M character(key: String): CharacterType -> pg("characterType" key)
+    @M classType(class: Class): ClassType -> pg("classType" class)
+    @M enumType(key: String): EnumType -> pg("enumType" key)
+    @M function(key: String): FunctionType -> pg("functionType" key)
+    @M generic(key: String): GenericType -> pg("genericType" key)
+    @M nullType(key: String): NullType -> pg("nullType" key)
+    @M numeric(key: String): NumericType -> pg("numericType" key)
+    @M object(key: String): ObjectType -> pg("objectType" key)
+    @M error(key: String): ErrorType -> pg("errorType" key)
+    @M primitive(key: String): PrimitiveType -> pg("primitiveType" key)
+    @M special(key: String): SpecialType -> pg("specialType" key)
+    @M string(key: String): StringType -> pg("stringType" key)
+    @M typeType(type: Type): TypeType -> pg("typeType" type)
+    @M voidType(key: String): VoidType -> pg("voidType" key)
+
+    <T extends Type> withGenerics(T type, GenericType... generics): HasGenericType
+
+    @M value(): Value -> pg("value")
+    @M <T extends Type> array(T value): ArrayValue<T> -> pg("arrayVal" a)
+    @M bool(boolean b): BooleanValue -> pg("boolVal" boolean b)
+    @M character(char c): CharacterValue -> pg("characterVal" char c)
+    @M classValue(class: Class): ClassValue -> pg("classVal" class)
+    @M enumValue(): EnumValue -> pg("enumValue")
+    @M function(function: Function): FunctionValue -> pg("functionVal" function)
+    @M nullValue(key: String): NullValue -> pg("nullVal" key)
+    @M numeric(num: Number): NumericValue -> pg("numericVal" num)
+    @M object(): ObjectValue -> pg("objectVal")
+    @M error(): ErrorValue -> pg("errorVal")
+    @M primitive(): PrimitiveValue -> pg("primitiveVal")
+    @M special(): SpecialValue -> pg("specialVal")
+    @M string(str: String): StringValue -> pg("stringVal" str)
+    @M typeValue(type: Type): TypeValue -> pg("typeVal" type)
+
+    @M accessor(): Accessor -> pg("accessor")
+    @M array(array: Expression, index: String): ArrayAccessor -> pg("arrayAcc" array index)
+    @M field(field: Field): FieldAccessor -> pg("fieldAcc" field)
+    @M member(member: Member): MemberAccessor -> pg("memberAcc" member)
+    @M method(method: Method): MethodAccessor -> pg("methodAcc" method)
+    @M dynamic(): DynamicAccessor -> pg("dynamicAcc")
+    @M property(prop: Property): PropertyAccessor -> pg("propertyAcc" prop)
+
+    @M declaration(comp: ProgramComponent, type: Type): Declaration -> pg("declaration" comp type)
+    @M field(f: Field, type: Type, mods: ModifierList): FieldDeclaration -> pg("fieldDecl" f type mods)
+    @M function(func: Function, type: Type): FunctionDeclaration -> pg("functionDecl" func type)
+    @M member(member: Member, type: Type, mods: ModifierList): MemberDeclaration -> pg("memberDecl" member type mods)
+    @M method(method: Method, type: Type, mods: ModifierList): MethodDeclaration -> pg("methodDecl" method type mods)
+    @M paramater(param: Parameter, type: Type, mods: ModifierList): ParameterDeclaration -> pg("paramaterDecl" param type mods)
+    @M property(prop: Property, type: Type, mods: ModifierList): PropertyDeclaration -> pg("propertyDecl" prop type mods)
+    @M variable(var: Variable, type: Type, mods: ModifierList): VariableDeclaration -> pg("variableDecl" var type mods)
+
+    @M definition(comp: ProgramComponent, type: Type): Definition -> pg("definition" comp type)
+    @M field(f: Field, type: Type, mods: ModifierList, value: Value): FieldDefinition -> pg("fieldDef" f type mods value)
+    @M function(func: Function, type: Type): FunctionDefinition -> pg("functionDef" func type)
+    @M functionValue(func: Function, type: Type, value: FunctionValue): FunctionValueDefinition -> pg("functionValueDef" func type value)
+    @M inline(func: Function, type: Type, block: Block): InlineFunctionDefinition -> pg("inlineDef" func type block)
+    @M lambda(func: Function, type: Type): LambdaFunctionDefinition -> pg("lambda" func type)
+    @M lambdaBlock(func: Function, type: Type, block: Block): LambdaFunctionBlockDefinition -> pg("lambdaBlock" func type block)
+    @M lambdaValue(func: Function, type: Type, value: Value): LambdaFunctionValueDefinition -> pg("lambdaValue" func type value)
+    @M member(member: Member, type: Type, mods: ModifierList): MemberDefinition -> pg("memberDef" member type mods)
+    @M method(method: Method, type: Type, mods: ModifierList, block: Block): MethodDefinition -> pg("methodDef" method type mods block)
+    @M parameter(param: Parameter, type: Type, mods: ModifierList, value: Value): ParameterDefinition -> pg("parameterDef" param type mods value)
+    @M property(prop: Property, type: Type, mods: ModifierList, value: Value): PropertyDefinition -> pg("propertyDef" prop type mods value)
+    @M variable(var: Variable, type: Type, mods: ModifierList, value: Value): VariableDefinition -> pg("variableDef" var type mods value)
+
+    @M literal(): Literal -> pg("literal")
+    @M constant(): ConstantLiteral -> pg("constantLit")
+    @M array(expressions: Expression[]): ArrayLiteral -> pg("arrayLit" expressions)
+    @M bool(boolean state): BooleanLiteral -> pg("boolLit" boolean state)
+    @M character(char c): CharacterLiteral -> pg("characterLit" char c)
+    @M nullLiteral(): NullLiteral -> pg("nullLit")
+    @M number(number: Number): NumberLiteral -> pg("numberLit" number)
+    @M object(properties: PropertyDeclaration[]): ObjectLiteral -> pg("objectLit" properties)
+    @M string(str: String): StringLiteral -> pg("stringLit" str)
+    @M dynamic(): DynamicLiteral -> pg("dynamicLit")
+    @M template(): TemplateLiteral -> pg("templateLit")
+    @M classLiteral(): ClassLiteral -> pg("classLit")
+    @M function(): FunctionLiteral -> pg("functionLit")
+
+    // TODO Add some new parts: Annotation, TypeModifier, AbstractClass, Enum(erable), Interface, TupleType, for, while, do, if/elseif/else, switch, try/catch/finally, for each, for in, destructuring, ...
+
+    @M memberContainer(): MemberContainer -> pg("memberContainer")
+    @M class(members: Member[]): Class -> pg("class" members)
+    @M member(id: Identifier, mods: ModifierList): Member -> pg("member" id mods)
+    @M function(mods: ModifierList, params: ParameterList, throwsList: ThrowsList, returnType: Type, block: Block): Function -> pg("function" mods params throwsList returnType block)
+    @M constructor(id: Identifier, mods: ModifierList, params: ParameterList, throwsList: ThrowsList, returnType: Type, block: Block): Constructor -> pg("constructor" id: Identifier, mods params throwsList returnType block)
+    @M method(id: Identifier, mods: ModifierList, params: ParameterList, throwsList: ThrowsList, returnType: Type, block: Block): Method -> pg("method" id: Identifier, mods params throwsList returnType block)
+    @M field(id: Identifier, mods: ModifierList, type: Type): Field -> pg("field" id mods type)
+    @M init(block: Block): Initializer -> pg("init" block)
+    @M keyword(id: Identifier): Keyword -> pg("keyword" id)
+    @M modifier(id: Identifier): Modifier -> pg("modifier" id)
+    @M modifierList(mods: Modifier[]): ModifierList -> pg("modifierList" mods)
+    @M namespace(id: Identifier): Namespace -> pg("namespace" id)
+    @M parameter(id: Identifier, type: Type): Parameter -> pg("parameter" id type)
+    @M parameterList(params: ParameterDeclaration[]): ParameterList -> pg("parameterList" params)
+    @M program(container: FileContainer): Program -> pg("program" container)
+    @M property(id: Identifier): Property -> pg("property" id)
+    @M template(parts: TemplatePart[]): Template -> pg("template" parts)
+    @M templatePart(type: Type): TemplatePart -> pg("templatePart" type) // idk what this is
+    @M throws(errorType: ErrorType): Throws -> pg("throws" errorType)
+    @M throwsList(throws: Throws[]): ThrowsList -> pg("throwsList" throws)
+    
+    @M scope(): Scope -> pg("scope")
+    @M globalScope(): GlobalScope -> pg("globalScope")
+    @M var(id: Identifier, mods: ModifierList, type: Type): Variable -> pg("var" id mods type)
+    @M global(id: Identifier, mods: ModifierList, type: Type): GlobalVariable -> pg("global" id mods type)
+    @M local(id: Identifier, mods: ModifierList, type: Type): LocalVariable -> pg("local" id mods type)
+    @M assignment(op: BinaryOperatorExpression): Assignment -> pg("assignment" op)
+    @M identifiable(id: Identifier): Identifiable -> pg("identifiable" id)
+    @M identifier(name: String): Identifier -> pg("identifier" name)
+    @M identifierPart(id: Identifier): IdentifierPart -> pg("identifierPart" id)
+    
+    @M component(): ProgramComponent -> pg("programComponent")
+    @M part(): ProgramPart -> pg("programPart")
+    @M value(): ProgramValue -> pg("programValue")
+}

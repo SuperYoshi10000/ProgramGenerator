@@ -1,5 +1,7 @@
 package local.ytk.tools.programgen2.parts;
 
+import java.util.Collection;
+
 public interface ThrowsList extends ProgramPart {
-    Throws[] throwTypes();
+    Collection<Throws> throwTypes();
 }

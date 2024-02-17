@@ -1,5 +1,7 @@
 package local.ytk.tools.programgen2.value;
 
-public interface StringValue extends ArrayValue<CharacterValue> {
-    
+import local.ytk.tools.programgen2.type.CharacterType;
+
+public interface StringValue extends ArrayValue<CharacterType> {
+    String str();
 }

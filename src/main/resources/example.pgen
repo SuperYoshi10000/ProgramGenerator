@@ -1,0 +1,40 @@
+@import "programgen2" -> *
+@makeglobal
+
+@var string = `string()`
+@var void = `void()`
+
+@var public = `modifier("public")`
+@var protected = `modifier("protected")`
+@var private = `modifier("private")`
+@var static = `modifier("static")`
+
+@var p = $public
+@var pr = $private
+@var pt = $protected
+@var s = $static
+@var v = $void
+
+@var ps = $p $s
+@var pv = $p $v
+@var psv = $ps $v
+@var prs = $pr $s
+@var prv = $pr $v
+@par prsv = $prs $v
+@var pts = $pt $s
+@var ptv = $pt $v
+@var ptsv = $pts $v
+
+program {
+    package("com.example") {
+        package("project") {
+            classfile("Main") {
+                class($p "Main") {
+                    method($psv "main" { varargs(strt) "args" }) {
+                        out(str("Hello World!"))
+                    }
+                }
+            }
+        }
+    }
+}

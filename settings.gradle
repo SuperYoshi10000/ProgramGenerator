@@ -8,4 +8,6 @@
  */
 
 rootProject.name = 'ProgramGenerator'
-include('app')
+
+// include ":pgen"
+// project(":pgen").projectDir = new File(settingsDir, "../pgen")

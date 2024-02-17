@@ -1,0 +1,9 @@
+@global("pgen") 
+
+@fn program(*contents: Package[]): Program -> $contents.map(Package:toString)
+
+@fn params(*parameters: (type + value)[]): ParameterList {}
+
+@fn fake(): String {
+    @ret String[]{ "a", "b", "c" }
+}

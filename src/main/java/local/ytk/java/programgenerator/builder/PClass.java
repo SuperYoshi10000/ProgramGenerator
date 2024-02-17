@@ -68,7 +68,7 @@ public class PClass extends Member<PClass> implements Type<PClass> {
         return addMethod(name, type, Visibility.IGNORE, code, false, false, false);
     }
     public <T extends Type<T>> PClass addMethod(Identifier name, T type, Visibility visibility, Object code, boolean isStatic, boolean isFinal, boolean isConstant) {
-        // TODO add addMethod()
+        // T.O.D.O. add addMethod()
         return this;
     }
 }

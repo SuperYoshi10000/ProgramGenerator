@@ -22,11 +22,13 @@ dependencies {
 
     // This dependency is used by the application.
     implementation "com.google.guava:guava:31.1-jre"
+
+    implementation project(":pgen")
 }
 
 application {
     // Define the main class for the application.
-    mainClass = "local.ytk.java.programgenerator.App"
+    mainClass = "local.ytk.tools.programgen2.ProgramGenerator2"
 }
 
 tasks.named("test") {

@@ -1,5 +1,7 @@
 package local.ytk.tools.programgen2.value;
 
-public interface ArrayValue<V extends Value> extends SpecialValue {
+import local.ytk.tools.programgen2.type.Type;
+
+public interface ArrayValue<V extends Type> extends SpecialValue {
     
 }
