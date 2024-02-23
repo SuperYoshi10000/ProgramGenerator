@@ -20,7 +20,7 @@
 @var psv = $ps $v
 @var prs = $pr $s
 @var prv = $pr $v
-@par prsv = $prs $v
+@var prsv = $prs $v
 @var pts = $pt $s
 @var ptv = $pt $v
 @var ptsv = $pts $v
@@ -38,3 +38,6 @@ program {
         }
     }
 }
+
+@class aaa<T : A<B : C<D : E>>> : aaa {}
+@fn aaaa (a: aaa, b: bbb<ccc<ddd : a>>): eee {}
