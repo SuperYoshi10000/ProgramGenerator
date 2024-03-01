@@ -1,9 +1,11 @@
-@global("pgen") 
+@native "pgen", "ProgramGenerator" -> *
 
-@fn program(*contents: Package[]): Program -> $contents.map(Package:toString)
+#@fn program(contents: Package)
 
-@fn params(*parameters: (type + value)[]): ParameterList {}
+@fn params(*parameters: (type + value)[]): ParameterList<A> {}
 
-@fn fake(): String {
-    @ret String[]{ "a", "b", "c" }
+@fn fake(): @String {
+    @ret { "a", "b", "c" }
 }
+
+@class a: b {}

@@ -1,9 +1,7 @@
-@file mode = "lib"
-@requirenative "ProgramGenerator" -> *
+@import "defs" -> *
 
 # Usage:
 # @import "programgen2" -> *
-# @makeglobal pgen
 
 @class pgen {
     @M builder(): Builder {
@@ -150,7 +148,7 @@
     @M classLiteral(): ClassLiteral -> pg("classLit")
     @M function(): FunctionLiteral -> pg("functionLit")
 
-    // TODO Add some new parts: Annotation, TypeModifier, AbstractClass, Enum(erable), Interface, TupleType, for, while, do, if/elseif/else, switch, try/catch/finally, for each, for in, destructuring, ...
+    # TODO Add some new parts: Annotation, TypeModifier, AbstractClass, Enum(erable), Interface, TupleType, for, while, do, if/elseif/else, switch, try/catch/finally, for each, for in, destructuring, ...
 
     @M memberContainer(): MemberContainer -> pg("memberContainer")
     @M class(members: Member[]): Class -> pg("class" members)

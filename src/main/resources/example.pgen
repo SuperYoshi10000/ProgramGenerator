@@ -1,8 +1,16 @@
 @import "programgen2" -> *
-@makeglobal
 
-@var string = `string()`
-@var void = `void()`
+# possible comment
+
+@var string = ``
+
+@var aaa = "aaa"
+
+@var void = `void(`a(`a()`)`)`
+
+string("a")
+("", 0, @false, @null)
+a`a`a`a`a`a`a`a`a`a```````````
 
 @var public = `modifier("public")`
 @var protected = `modifier("protected")`
@@ -39,5 +47,20 @@ program {
     }
 }
 
-@class aaa<T : A<B : C<D : E>>> : aaa {}
-@fn aaaa (a: aaa, b: bbb<ccc<ddd : a>>): eee {}
+@var a = `@true`
+@val b: @String = "A"
+@if (0) {
+    @val a: A = 1
+    
+}
+
+"""AAA"""
+
+f(1);
+
+@class RandomClass<T: A>: B {
+    @fn f() {}
+    @val a = 1
+
+}
+@fn randomFunction (a: A<C>, b: B<C<D>>, c: F<G<H:I,J:K>:L): M {}
